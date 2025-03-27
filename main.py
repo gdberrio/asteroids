@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 
 from asteroid import Asteroid
@@ -38,6 +40,10 @@ def main():
         for item in drawable_group:
             item.draw(screen)
         updatable_group.update(dt)
+        for item in asteroid_group:
+            if item.collides(player):
+                print("Game Over!")
+                sys.exit()
         pygame.display.flip()
 
         dt = clock.tick(60) / 1000
