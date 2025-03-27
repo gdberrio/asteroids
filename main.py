@@ -1,5 +1,6 @@
 import pygame
 
+from asteroid import Asteroid
 from constants import *
 from player import Player
 
@@ -16,11 +17,17 @@ def main():
 
     updatable_group = pygame.sprite.Group()
     drawable_group = pygame.sprite.Group()
+    asteroid_group = pygame.sprite.Group()
 
     Player.containers = (updatable_group, drawable_group)
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
+    Asteroid.containers = (asteroid_group, updatable_group, drawable_group)
+
+    asteroid = Asteroid(SCREEN_WIDTH / 3, SCREEN_HEIGHT / 3, 10)
+
+    asteroid.velocity = pygame.Vector2(0, 10)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
